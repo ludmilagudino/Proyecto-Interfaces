@@ -1,5 +1,6 @@
 # Ignore venv folder
 /venv/
+.venv/
 
 # Ignore pruebasheetpython.json
 /pruebasheetpython.json
