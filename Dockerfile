@@ -1,18 +1,15 @@
-# Usar una imagen base oficial de Python
-FROM python:3.9-slim
+FROM python:3.9.7
 
-# Establecer el directorio de trabajo en el contenedor
-WORKDIR /app
+WORKDIR /src
 
-# Copiar el archivo de requisitos y luego instalarlos
-COPY requirements.txt .
+# Copia el archivo requirements.txt primero
+COPY src/requirements.txt .
+
+# Instala las dependencias desde el archivo requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar todo el código fuente a la imagen del contenedor
-COPY . .
+# Copia el resto del código
+COPY src/ /src
 
-# Exponer el puerto en el que la aplicación estará disponible
-EXPOSE 5000
-
-# Definir el comando de inicio de la aplicación
-CMD ["python", "src/main.py"]
+# Comando para ejecutar la aplicación
+ENTRYPOINT ["python", "app.py"]
